@@ -6,14 +6,14 @@ const TodoSchema = new Schema({
         type: String,
         require: true
     },
-    task: {
+    task: [{
         title: {
             type: String,
             require: true
         },
         due: Date,
         text: String
-    }
+    }]
 });
 
 export const TodoModel = model<ITodoModel>('Todo', TodoSchema);

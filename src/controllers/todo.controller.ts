@@ -10,7 +10,7 @@ routes.get('/', (req, res, next) => {
 });
 
 routes.get('/:id', (req, res, next) => {
-    service.getId(req.params._id)
+    service.getId(req.params.id)
         .then(value => res.json(value))
         .catch(reason => next(reason));
 });
