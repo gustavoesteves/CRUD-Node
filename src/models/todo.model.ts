@@ -7,7 +7,10 @@ const TodoSchema = new Schema({
         unique: true,
         require: true
     },
-    start: Date,
+    start: {
+        type: Date,
+        default: Date.now
+    },
     end: Date,
     task: [{
         title: {
@@ -15,7 +18,10 @@ const TodoSchema = new Schema({
             unique: true,
             require: true
         },
-        start: Date,
+        start: {
+            type: Date,
+            default: Date.now
+        },
         end: Date,
         due: Date,
         text: String

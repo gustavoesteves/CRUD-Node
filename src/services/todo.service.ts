@@ -1,4 +1,3 @@
-import { ITaskModel } from "../interfaces/todo.interface";
 import { TodoModel } from "../models/todo.model";
 
 async function get() {
@@ -6,29 +5,20 @@ async function get() {
 }
 
 async function getId(_id: string) {
-    return await TodoModel.findById({ _id });
+    return await TodoModel.findById({ _id: _id });
 }
 
-async function post(title: string, task: ITaskModel) {
-    const newTodo = new TodoModel({
-        title: title,
-        task: {
-            title: task.title,
-            due: task.due,
-            text: task.title
-        }
-    });
+async function post(title: string) {
+    const newTodo = new TodoModel({ title: title });
     await newTodo.save();
 
     return newTodo;
 }
 
-async function putId(idTask: string, title: string, task: ITaskModel) {
-    const putTodo = await TodoModel.findOne({ 'task._id': idTask });
+async function putId(id: string, title: string) {
+    const putTodo = await TodoModel.findOne({ _id: id });
+
     putTodo.title = title;
-    putTodo.task[0].title = task.title;
-    putTodo.task[0].due = task.due;
-    putTodo.task[0].text = task.text;
     await putTodo.save();
 
     return putTodo;

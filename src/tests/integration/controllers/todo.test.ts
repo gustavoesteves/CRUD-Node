@@ -6,14 +6,24 @@ import { TodoModel } from "../../../models/todo.model";
 describe('todo - controller', () => {
     let newTodo: ITodoModel;
 
-    beforeAll(async () => {
-        await TodoModel.deleteMany({});
-    });
+    function createTodo() {
+        newTodo = new TodoModel({ title: 'todo' });
+        return newTodo.save();
+    }
 
     describe('get', () => {
         test('HP', async () => {
+            createTodo();
             return supertest(server)
                 .get('/api/todo')
+                .expect(200);
+        });
+    });
+
+    describe('getId', () => {
+        test('HP', async () => {
+            return supertest(server)
+                .get(`/api/todo/${newTodo.id}`)
                 .expect(200);
         });
     });
@@ -22,14 +32,7 @@ describe('todo - controller', () => {
         test('HP', async () => {
             return supertest(server)
                 .post('/api/todo')
-                .send({
-                    title: 'title',
-                    task: {
-                        title: 'task.title',
-                        due: new Date,
-                        text: 'task.text'
-                    }
-                })
+                .send({ title: 'title' })
                 .expect(200)
                 .then(value => {
                     const text = JSON.parse(value.text);
@@ -39,30 +42,15 @@ describe('todo - controller', () => {
         });
     });
 
-    describe('getId', () => {
-        test('HP', async () => {
-            return supertest(server)
-                .get(`/api/todo/${newTodo._id}`)
-                .expect(200);
-        });
-    });
-
     describe('putIdTask', () => {
         test('HP', async () => {
             return supertest(server)
-                .put(`/api/todo/${newTodo.task[0]._id}`)
-                .send({
-                    title: 'title chubaca',
-                    task: {
-                        title: 'task.title chubaca',
-                        due: new Date,
-                        text: 'task.text chubaca'
-                    }
-                })
+                .put(`/api/todo/${newTodo.id}`)
+                .send({ title: 'title chubaca' })
                 .expect(200)
                 .then(value => {
                     const text = JSON.parse(value.text);
-                    expect(text.task[0].title).toBe('task.title chubaca');
+                    expect(text.title).toBe('title chubaca');
                 });
         });
     });
@@ -70,7 +58,7 @@ describe('todo - controller', () => {
     describe('delteId', () => {
         test('HP', async () => {
             return supertest(server)
-                .delete(`/api/todo/${newTodo._id}`)
+                .delete(`/api/todo/${newTodo.id}`)
                 .expect(200);
         });
     });

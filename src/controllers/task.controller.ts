@@ -1,13 +1,7 @@
 import { Router } from "express";
-import service from "../services/todo.service";
+import service from "../services/task.service";
 
 const routes = Router();
-
-routes.get('/', (req, res, next) => {
-    service.get()
-        .then(value => res.json(value))
-        .catch(reason => next(reason));
-});
 
 routes.get('/:id', (req, res, next) => {
     service.getId(req.params.id)
@@ -15,20 +9,20 @@ routes.get('/:id', (req, res, next) => {
         .catch(reason => next(reason));
 });
 
-routes.post('/', (req, res, next) => {
-    service.post(req.body.title)
+routes.post('/:id', (req, res, next) => {
+    service.post(req.params.id, req.body.task)
         .then(value => res.json(value))
         .catch(reason => next(reason));
 });
 
 routes.put('/:id', (req, res, next) => {
-    service.putId(req.params.id, req.body.title)
+    service.putId(req.params.id, req.body.task)
         .then(value => res.json(value))
         .catch(reason => next(reason));
 });
 
 routes.delete('/:id', (req, res, next) => {
-    service.deleteId(req.params.id)
+    service.deleteId(req.params._id)
         .then(value => res.json(value))
         .catch(reason => next(reason));
 });
