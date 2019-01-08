@@ -26,7 +26,7 @@ describe('todo - controller', () => {
                     title: 'title',
                     task: {
                         title: 'task.title',
-                        due: Date,
+                        due: new Date,
                         text: 'task.text'
                     }
                 })
@@ -47,4 +47,31 @@ describe('todo - controller', () => {
         });
     });
 
+    describe('putIdTask', () => {
+        test('HP', async () => {
+            return supertest(server)
+                .put(`/api/todo/${newTodo.task[0]._id}`)
+                .send({
+                    title: 'title chubaca',
+                    task: {
+                        title: 'task.title chubaca',
+                        due: new Date,
+                        text: 'task.text chubaca'
+                    }
+                })
+                .expect(200)
+                .then(value => {
+                    const text = JSON.parse(value.text);
+                    expect(text.task[0].title).toBe('task.title chubaca');
+                });
+        });
+    });
+
+    describe('delteId', () => {
+        test('HP', async () => {
+            return supertest(server)
+                .delete(`/api/todo/${newTodo._id}`)
+                .expect(200);
+        });
+    });
 });

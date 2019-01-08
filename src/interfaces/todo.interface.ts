@@ -1,14 +1,20 @@
 import { Document } from "mongoose";
 
-export interface ITodo {
+interface ITodo {
     title: string;
-    task: ITask[];
+    start: Date;
+    end: Date;
+    task: ITaskModel[];
 }
 
-export interface ITask {
+interface ITask {
     title: string;
+    start: Date;
+    end: Date;
     due?: Date;
     text?: string;
 }
+
+export interface ITaskModel extends ITask, Document { };
 
 export interface ITodoModel extends ITodo, Document { };

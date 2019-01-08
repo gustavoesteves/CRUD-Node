@@ -21,8 +21,8 @@ routes.post('/', (req, res, next) => {
         .catch(reason => next(reason));
 });
 
-routes.put('/:id/:idTask', (req, res, next) => {
-    service.putId(req.params._id, req.params.idTask, req.body.title, req.body.task)
+routes.put('/:idTask', (req, res, next) => {
+    service.putId(req.params.idTask, req.body.title, req.body.task)
         .then(value => res.json(value))
         .catch(reason => next(reason));
 });

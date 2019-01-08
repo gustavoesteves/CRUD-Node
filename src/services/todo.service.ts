@@ -1,4 +1,4 @@
-import { ITask } from "../interfaces/todo.interface";
+import { ITaskModel } from "../interfaces/todo.interface";
 import { TodoModel } from "../models/todo.model";
 
 async function get() {
@@ -9,7 +9,7 @@ async function getId(_id: string) {
     return await TodoModel.findById({ _id });
 }
 
-async function post(title: string, task: ITask) {
+async function post(title: string, task: ITaskModel) {
     const newTodo = new TodoModel({
         title: title,
         task: {
@@ -23,9 +23,15 @@ async function post(title: string, task: ITask) {
     return newTodo;
 }
 
-async function putId(_id: string, idTask: string, title: string, task: ITask) {
-    const putTodo = await TodoModel.findById({ _id });
+async function putId(idTask: string, title: string, task: ITaskModel) {
+    const putTodo = await TodoModel.findOne({ 'task._id': idTask });
     putTodo.title = title;
+    putTodo.task[0].title = task.title;
+    putTodo.task[0].due = task.due;
+    putTodo.task[0].text = task.text;
+    await putTodo.save();
+
+    return putTodo;
 }
 
 async function deleteId(_id: string) {
