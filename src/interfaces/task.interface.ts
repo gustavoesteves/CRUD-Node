@@ -1,6 +1,7 @@
 import { Document } from "mongoose";
 
 export interface ITask {
+    idTodo: string;
     title: string;
     start: Date;
     end: Date;

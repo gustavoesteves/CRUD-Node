@@ -11,21 +11,7 @@ const TodoSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    end: Date,
-    task: [{
-        title: {
-            type: String,
-            unique: true,
-            require: true
-        },
-        start: {
-            type: Date,
-            default: Date.now
-        },
-        end: Date,
-        due: Date,
-        text: String
-    }]
+    end: Date
 });
 
 export const TodoModel = model<ITodoModel>('Todo', TodoSchema);

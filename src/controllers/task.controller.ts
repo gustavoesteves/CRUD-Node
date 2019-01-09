@@ -3,29 +3,28 @@ import service from "../services/task.service";
 
 const routes = Router();
 
-routes.get('/:id', (req, res, next) => {
-    service.getId(req.params.id)
+routes.get('/:idTodo', (req, res, next) => {
+    service.getId(req.params.idTodo)
         .then(value => res.json(value))
         .catch(reason => next(reason));
 });
 
-routes.post('/:id', (req, res, next) => {
-    service.post(req.params.id, req.body.task)
+routes.post('/:idTodo', (req, res, next) => {
+    service.post(req.params.idTodo, req.body)
         .then(value => res.json(value))
         .catch(reason => next(reason));
 });
 
-routes.put('/:id', (req, res, next) => {
-    service.putId(req.params.id, req.body.task)
+routes.put('/:idTask', (req, res, next) => {
+    service.putId(req.params.idTask, req.body)
         .then(value => res.json(value))
         .catch(reason => next(reason));
 });
 
-routes.delete('/:id', (req, res, next) => {
-    service.deleteId(req.params._id)
+routes.delete('/:idTask', (req, res, next) => {
+    service.deleteId(req.params.idTask)
         .then(value => res.json(value))
         .catch(reason => next(reason));
 });
-
 
 export default routes;

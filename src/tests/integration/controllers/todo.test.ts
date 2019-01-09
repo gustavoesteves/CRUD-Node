@@ -6,10 +6,15 @@ import { TodoModel } from "../../../models/todo.model";
 describe('todo - controller', () => {
     let newTodo: ITodoModel;
 
-    function createTodo() {
+    async function createTodo() {
         newTodo = new TodoModel({ title: 'todo' });
-        return newTodo.save();
+        await newTodo.save();
     }
+
+    afterAll(async () => {
+        await server.close();
+        await TodoModel.deleteMany({});
+    });
 
     describe('get', () => {
         test('HP', async () => {
@@ -32,12 +37,11 @@ describe('todo - controller', () => {
         test('HP', async () => {
             return supertest(server)
                 .post('/api/todo')
-                .send({ title: 'title' })
+                .send({ title: 'new todo' })
                 .expect(200)
                 .then(value => {
-                    const text = JSON.parse(value.text);
-                    newTodo = text;
-                    expect(text.title).toBe('title');
+                    const result = JSON.parse(value.text);
+                    expect(result.title).toBe('new todo');
                 });
         });
     });
@@ -54,7 +58,7 @@ describe('todo - controller', () => {
                 });
         });
     });
-
+    
     describe('delteId', () => {
         test('HP', async () => {
             return supertest(server)

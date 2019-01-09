@@ -10,6 +10,7 @@ async function getId(_id: string) {
 
 async function post(title: string) {
     const newTodo = new TodoModel({ title: title });
+
     await newTodo.save();
 
     return newTodo;

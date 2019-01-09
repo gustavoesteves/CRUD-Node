@@ -1,39 +1,36 @@
 import { ITaskModel } from "../interfaces/task.interface";
-import { TodoModel } from "../models/todo.model";
+import { TaskModel } from "../models/task.model";
 
 async function getId(_id: string) {
-    return await TodoModel.findById({ 'task._id': _id });
+    return await TaskModel.find({ _id: _id });
 }
 
 async function post(_id: string, task: ITaskModel) {
-    console.log(task);
-    const newTask = {
-        $push: {
-            task: {
-                title: task.title,
-                text: task.text
-            }
-        }
-    };
+    const newTask = new TaskModel({
+        idTodo: _id,
+        title: task.title,
+        due: task.due,
+        text: task.text
+    });
 
-    const todo = await TodoModel.findByIdAndUpdate({ _id: _id }, newTask);
+    await newTask.save();
 
-    return todo;
+    return newTask;
 }
 
 async function putId(_id: string, task: ITaskModel) {
-    const putTodo = await TodoModel.findOne({ 'task._id': _id });
+    const putTodo = await TaskModel.findOne({ _id: _id });
 
-    putTodo.task[0].title = task.title;
-    putTodo.task[0].due = task.due;
-    putTodo.task[0].text = task.text;
+    putTodo.title = task.title;
+    putTodo.due = task.due;
+    putTodo.text = task.text;
     await putTodo.save();
 
     return putTodo;
 }
 
 async function deleteId(_id: string) {
-    return await TodoModel.deleteOne({ _id: _id });
+    return await TaskModel.deleteOne({ _id: _id });
 }
 
 export default { deleteId, getId, post, putId };
