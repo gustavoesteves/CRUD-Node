@@ -1,9 +1,9 @@
 import express = require("express");
 import { get } from "config";
 import { info } from "winston";
-import loginfo from "./startup/loginfo.startup";
-import db from "./startup/db.startup";
-import routes from "./startup/routes.startup";
+import loginfo from "./config/loginfo.startup";
+import db from "./config/db.startup";
+import routes from "./config/routes.startup";
 
 const app = express();
 
