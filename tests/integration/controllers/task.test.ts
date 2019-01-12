@@ -1,9 +1,9 @@
 import supertest = require("supertest");
-import { server } from "../../../server";
-import { ITodoModel } from "../../../interfaces/todo.interface";
-import { ITaskModel } from "../../../interfaces/task.interface";
-import { TodoModel } from "../../../models/todo.model";
-import { TaskModel } from "../../../models/task.model";
+import { server } from "../../../src/server";
+import { ITodoModel } from "../../../src/interfaces/todo.interface";
+import { ITaskModel } from "../../../src/interfaces/task.interface";
+import { TodoModel } from "../../../src/models/todo.model";
+import { TaskModel } from "../../../src/models/task.model";
 
 describe('task - controller', () => {
     let newTodo: ITodoModel;

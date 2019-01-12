@@ -1,7 +1,7 @@
 import supertest = require("supertest");
-import { server } from "../../../server";
-import { ITodoModel } from "../../../interfaces/todo.interface";
-import { TodoModel } from "../../../models/todo.model";
+import { server } from "../../../src/server";
+import { ITodoModel } from "../../../src/interfaces/todo.interface";
+import { TodoModel } from "../../../src/models/todo.model";
 
 describe('todo - controller', () => {
     let newTodo: ITodoModel;
