@@ -20,7 +20,7 @@
       "node_modules"
     ],
     "watch": [
-      "src"
+      "server"
     ],
     "exec": "npm start",
     "ext": "ts"
@@ -28,7 +28,7 @@
   "jest": {
     "verbose": true,
     "roots": [
-      "<rootDir>/src"
+      "<rootDir>/server"
     ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
