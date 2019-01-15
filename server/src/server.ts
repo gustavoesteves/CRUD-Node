@@ -1,4 +1,4 @@
-import express = require("express");
+import * as express from "express";
 import { get } from "config";
 import { info } from "winston";
 import loginfo from "./config/loginfo.startup";
