@@ -1,54 +1,31 @@
 <section id="banner">
-    <div class="content">
-      <h3>Task list</h3>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Item1</td>
-              <td>Ante turpis integer aliquet porttitor.</td>
-              <td>29.99</td>
-            </tr>
-            <tr>
-              <td>Item2</td>
-              <td>Vis ac commodo adipiscing arcu aliquet.</td>
-              <td>19.99</td>
-            </tr>
-            <tr>
-              <td>Item3</td>
-              <td> Morbi faucibus arcu accumsan lorem.</td>
-              <td>29.99</td>
-            </tr>
-            <tr>
-              <td>Item4</td>
-              <td>Vitae integer tempus condimentum.</td>
-              <td>19.99</td>
-            </tr>
-            <tr>
-              <td>Item5</td>
-              <td>Ante turpis integer aliquet porttitor.</td>
-              <td>29.99</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="2"></td>
-              <td>100.00</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-      <div class="col-12">
-          <ul class="actions">
-              <li><a routerLink="/newtask" class="button">New Task</a></li>
-            </ul>
-        </div>
+  <div class="content">
+    <h3>Task list</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>
+              <input type="checkbox">
+              <label for="demo-copy"></label>
+            </td>
+            <td>{{task.title}}</td>
+            <td>{{task.start}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </section>
+    <div class="col-12">
+      <ul class="actions">
+        <li><a routerLink="/newtask" class="button">New Task</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
