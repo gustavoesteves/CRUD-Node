@@ -1,18 +1,18 @@
 <section id="banner">
   <div class="content">
     <h3>New Todo</h3>
-    <form method="post" action="#">
+    <form>
       <div class="row gtr-uniform">
         <div class="col-12 col-12-xsmall">
-          <input type="text" name="demo-name" id="demo-name" value="" placeholder="Title" />
-        </div>
-        <!-- Break -->
-        <div class="col-12">
-          <ul class="actions">
-            <li><input type="submit" value="Add" class="primary" /></li>
-          </ul>
+          <input #title type="text" [value]=titleValue placeholder="Title" />
         </div>
       </div>
     </form>
+    <!-- Break -->
+    <div class="col-12">
+      <ul class="actions">
+        <li><button (click)="postTodo(title.value);" class="primary">Add</button></li>
+      </ul>
+    </div>
   </div>
 </section>

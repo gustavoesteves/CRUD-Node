@@ -10,24 +10,16 @@ import { TodoService } from "../todo.service";
 export class TodoComponent implements OnInit {
   todos: ITodo[] = [];
 
-  constructor(private todoService: TodoService) { }
-
-  ngOnInit() {
+  constructor(private todoService: TodoService) {
     this.todoService.getTodo()
-      .subscribe(todo => {
-        console.log('chegou...');
-        console.log(todo);
-        this.todos = todo;
+      .subscribe(todos => {
+        this.todoService.pushTodosInit(todos);
       });
-      /*
-    this.todos.push(
-      { title: 'Todo 1', start: new Date },
-      { title: 'Todo 2', start: new Date },
-      { title: 'Todo 3', start: new Date },
-      { title: 'Todo 4', start: new Date },
-      { title: 'Todo 5', start: new Date }
-    );
-    */
   }
 
+  ngOnInit() {
+    this.todoService.currentTodos.subscribe(todos => {
+      this.todos = todos;
+    });
+  }
 }
