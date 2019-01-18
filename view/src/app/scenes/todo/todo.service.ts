@@ -16,7 +16,7 @@ export class TodoService {
 
   constructor(private http: HttpClient) { }
 
-  /**
+/**
  * Local methods
  */
   pushTodosInit(todo: ITodo[]) {

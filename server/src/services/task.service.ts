@@ -2,7 +2,7 @@ import { ITaskModel } from "../interfaces/task.interface";
 import { TaskModel } from "../models/task.model";
 
 async function getId(_id: string) {
-    return await TaskModel.find({ _id: _id });
+    return await TaskModel.find({ idTodo: _id });
 }
 
 async function post(_id: string, task: ITaskModel) {

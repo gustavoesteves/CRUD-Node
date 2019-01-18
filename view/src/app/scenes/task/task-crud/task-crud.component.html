@@ -4,18 +4,18 @@
     <form>
       <div class="row gtr-uniform">
         <div class="col-12">
-          <input type="text" name="demo-name" id="demo-name" value="" placeholder="Title" />
+          <input [(ngModel)]="title" type="text" name="taskTitle" placeholder="Title" />
         </div>
         <!-- Break -->
         <div class="col-12">
-          <textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+          <textarea [(ngModel)]="text" name="taskMessage" placeholder="Enter your message" rows="6"></textarea>
         </div>
       </div>
     </form>
     <!-- Break -->
     <div class="col-12">
       <ul class="actions">
-        <li><input type="submit" value="Add" class="primary" /></li>
+        <li><input (click)="postTask(title, text);" type="submit" value="Add" class="primary" /></li>
       </ul>
     </div>
   </div>

@@ -4,14 +4,14 @@
     <form>
       <div class="row gtr-uniform">
         <div class="col-12 col-12-xsmall">
-          <input #title type="text" [value]=titleValue placeholder="Title" />
+          <input [(ngModel)]="title" name="textTitle" type="text" placeholder="Title" />
         </div>
       </div>
     </form>
     <!-- Break -->
     <div class="col-12">
       <ul class="actions">
-        <li><button (click)="postTodo(title.value);" class="primary">Add</button></li>
+        <li><button (click)="postTodo(title);" class="primary">Add</button></li>
       </ul>
     </div>
   </div>
